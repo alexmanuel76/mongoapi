@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Balancer {
 
     @Id
-    private Integer id;
+    private String id;
     private String servidor;
     private String hora;
     private String comentario;
