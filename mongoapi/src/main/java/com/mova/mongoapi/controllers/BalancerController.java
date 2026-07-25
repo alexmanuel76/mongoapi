@@ -13,6 +13,10 @@ import com.mova.mongoapi.model.Balancer;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * REST controller for handling balancer-related requests.
+ * Provides endpoints to add and list balancer entries.
+ */
 @RestController
 @RequestMapping(path="/balancer")
 public class BalancerController {
@@ -20,16 +24,27 @@ public class BalancerController {
     private static final Logger logger = LoggerFactory.getLogger(BalancerController.class);
     private final BalancerRepository balancerRepository;
 
+    /**
+     * Constructs a BalancerController with the specified repository.
+     * @param balancerRepository The repository for Balancer data operations.
+     */
     public BalancerController(BalancerRepository balancerRepository) {
         this.balancerRepository = balancerRepository;
     }
 
+    /**
+     * A simple health-check/greeting endpoint.
+     * @return A greeting string "hola".
+     */
     @GetMapping(path="/")
     public String saludo() {
         return "hola";
     }
     
-
+    /**
+     * Creates and saves a new Balancer entry with the current server's details.
+     * @return A confirmation message indicating which server saved the entry.
+     */
     @GetMapping(path="/add")
     public String grabar(){
 
@@ -55,6 +70,10 @@ public class BalancerController {
         return mensajeRespuesta;
     }
 
+    /**
+     * Retrieves all Balancer entries from the database.
+     * @return A list of all Balancer objects.
+     */
     @GetMapping(path="/list")
     public List<Balancer> list() {
         return balancerRepository.findAll();
